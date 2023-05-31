@@ -11,8 +11,16 @@ jest.mock('../eventEmitter', () => {
   };
 });
 
-// update to spy
-console.log = jest.fn();
+let consoleSpy;
+beforeEach(() => {
+  // Attach to the console (take it over)
+  consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+});
+
+afterEach(() => {
+  // Put the console back
+  consoleSpy.mockRestore();
+});
 
 
 describe('Driver', () => {
