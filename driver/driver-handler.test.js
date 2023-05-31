@@ -27,7 +27,7 @@ describe('Driver', () => {
     let payload = { orderId: 1234 };
     pickupPackage(payload);
 
-    expect(consoleSpy).toHaveBeenCalledWith('DRIVER: picked up', payload);
+    expect(consoleSpy).toHaveBeenCalledWith('Driver: picked up', payload.orderId);
     expect(eventEmitter.emit).toHaveBeenCalledWith('Package pickedup', payload);
     // expect(eventEmitter.emit).toHaveBeenCalledWith('Pickup: in-transit', payload);
   });
@@ -37,7 +37,7 @@ describe('Driver', () => {
     let payload = { orderId: 1234 };
     deliverPackage(payload);
 
-    expect(consoleSpy).toHaveBeenCalledWith('Driver: delivered', payload);
+    expect(consoleSpy).toHaveBeenCalledWith('Driver: delivered', payload.orderId);
     expect(eventEmitter.emit).toHaveBeenCalledWith('Package delivered', payload);
   });
 

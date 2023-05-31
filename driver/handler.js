@@ -22,7 +22,7 @@ const transitPackage = (payload) => {
 const deliverPackage = (payload) => {
   setTimeout(() => {
     console.log('Driver: delivered', payload.orderId);
-    eventEmitter.emit('Package delivered', payload);  
+    eventEmitter.emit('delivered', payload);  
   }, 3000);
 };
 

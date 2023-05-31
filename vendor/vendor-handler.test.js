@@ -26,15 +26,20 @@ afterEach(() => {
 
 describe('Vendor', (payload) => {
     test('Successfully place an order that is available', () => {
-        let payload = { orderId: 1234 };
+        let payload = { orderId: 1234, };
         orderPackage(payload);
 
-        expect(consoleSpy).toHaveBeenCalledWith('Vendor order:', payload);
-        expect(eventEmitter.emit).toHaveBeenCalledWith('Package available', payload);
+        expect(consoleSpy).toHaveBeenCalledWith('Vendor: Order ready for pickup', payload);
+        expect(eventEmitter.emit).toHaveBeenCalledWith('pickup', payload);
     });
 
 
-    'Order recieved', payload
+    test('Successfully console log and emit order message', () => {
+        let payload = { orderId: 1234, };
+        thankDriver(payload);
+
+        expect(consoleSpy).toHaveBeenCalledWith('Vendor: Thank you for placing your order', payload.customer);
+    })
 
 
 });

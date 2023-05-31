@@ -1,7 +1,7 @@
 'use strict';
 
 const eventEmitter = require('../eventEmitter');
-let chance = new Chance();
+const chance = require('./chance');
 
 const orderPackage = (payload = null) => {
     if (!payload) {
@@ -12,8 +12,8 @@ const orderPackage = (payload = null) => {
             address: chance.address(),
         };
     }
-    console.log('Vendor order: Ready for pickup', payload);
-    eventEmitter.emit('Package available', payload);
+    console.log('Vendor: Order ready for pickup', payload);
+    eventEmitter.emit('pickup', payload);
 };
 
 
