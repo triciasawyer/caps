@@ -1,7 +1,10 @@
 'use strict';
 
+
+const Chance = require('chance');
 const eventEmitter = require('../eventEmitter');
-const chance = require('./chance');
+
+let chance = new Chance();
 
 const orderPackage = (payload = null) => {
     if (!payload) {
