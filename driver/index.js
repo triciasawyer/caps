@@ -8,4 +8,3 @@ eventEmitter.on('Package pickedup', pickupPackage);
 eventEmitter.on('Pickup: in-transit', pickupPackage);
 eventEmitter.on('Package delivered', deliverPackage);
 eventEmitter.on('Delivery: in-transit', deliverPackage);
-eventEmitter.on('IN TRANSIT', deliverPackage);
