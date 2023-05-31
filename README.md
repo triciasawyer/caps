@@ -34,7 +34,6 @@ to run tests, after running `npm i`, run the command `npm test`
 
 [Render deploy](https://caps-dev.onrender.com)
 
-
 #### UML
 
 ![UML](./assets/UML3.png)
