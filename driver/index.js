@@ -2,9 +2,13 @@
 
 
 const eventEmitter = require('../eventEmitter');
-const { pickupPackage, deliverPackage } = require('./handler');
+const { pickupPackage, transitPackage, deliverPackage } = require('./handler');
+
+
+
+
+
 
 eventEmitter.on('Package pickedup', pickupPackage);
-eventEmitter.on('Pickup: in-transit', pickupPackage);
+eventEmitter.on('In transit', transitPackage);
 eventEmitter.on('Package delivered', deliverPackage);
-eventEmitter.on('Delivery: in-transit', deliverPackage);
