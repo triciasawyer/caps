@@ -5,10 +5,8 @@ const eventEmitter = require('../eventEmitter');
 
 
 const pickupPackage = (payload) => {
-  setTimeout(() => {
-    console.log('Driver: picked up', payload.orderId);
-    eventEmitter.emit('In transit', payload);  
-  }, 3000);
+  console.log('Driver: picked up', payload.orderId);
+  eventEmitter.emit('In transit', payload);
 };
 
 
@@ -20,10 +18,8 @@ const transitPackage = (payload) => {
 
 
 const deliverPackage = (payload) => {
-  setTimeout(() => {
-    console.log('Driver: delivered', payload.orderId);
-    eventEmitter.emit('delivered', payload);  
-  }, 3000);
+  console.log('Driver: delivered', payload.orderId);
+  eventEmitter.emit('delivered', payload);  
 };
 
 

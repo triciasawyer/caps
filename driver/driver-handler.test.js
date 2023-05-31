@@ -1,7 +1,7 @@
 'use strict';
 
 const eventEmitter = require('../eventEmitter');
-const { pickupPackage, deliverPackage } = require('./handler');
+const { pickupPackage, deliverPackage, orderPackage } = require('./handler');
 
 
 jest.mock('../eventEmitter', () => {
@@ -27,7 +27,7 @@ describe('Driver', () => {
     let payload = { orderId: 1234 };
     pickupPackage(payload);
 
-    // expect(eventEmitter.emit).toHaveBeenCalledWith('In transit', payload);
+    expect(eventEmitter.emit).toHaveBeenCalledWith('In transit', payload);
     expect(consoleSpy).toHaveBeenCalledWith('Driver: picked up', payload.orderId);
   });
 

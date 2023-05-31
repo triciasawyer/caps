@@ -1,6 +1,5 @@
 'use strict';
 
-
 const eventEmitter = require('../eventEmitter');
 const { orderPackage, thankDriver } = require('./handler');
 
@@ -13,6 +12,7 @@ jest.mock('../eventEmitter', () => {
 });
 
 let consoleSpy;
+
 beforeEach(() => {
     // Attach to the console (take it over)
     consoleSpy = jest.spyOn(console, 'log').mockImplementation();
@@ -39,7 +39,7 @@ describe('Vendor', (payload) => {
         thankDriver(payload);
 
         expect(consoleSpy).toHaveBeenCalledWith('Vendor: Thank you for placing your order', payload.customer);
-    })
+    });
 
 
 });
