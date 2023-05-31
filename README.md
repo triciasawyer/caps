@@ -6,7 +6,7 @@
 
 CAPS
 
-- Events(PR 1, lab 11)
+- Events((class-01)lab 11)
 This is the first of a 4-Phase build of the CAPS system, written in Node.js. In this first phase, our goal is to setup a pool of events and handler functions, with the intent being to refactor parts of the system throughout the week, but keep the handlers themselves largely the same. The task of “delivering a package” doesn’t change (the handler), even if the mechanism for triggering that task (the event) does.
 
 User stories:
