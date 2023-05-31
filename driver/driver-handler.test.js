@@ -12,13 +12,12 @@ jest.mock('../eventEmitter', () => {
 });
 
 let consoleSpy;
+
 beforeEach(() => {
-  // Attach to the console (take it over)
   consoleSpy = jest.spyOn(console, 'log').mockImplementation();
 });
 
 afterEach(() => {
-  // Put the console back
   consoleSpy.mockRestore();
 });
 
@@ -28,8 +27,8 @@ describe('Driver', () => {
     let payload = { orderId: 1234 };
     pickupPackage(payload);
 
-    expect(console.log).toHaveBeenCalledWith('DRIVER: picked up', payload.orderId);
-    // expect(eventEmitter.emit).toHaveBeenCalledWith('Package pickedup', payload);
+    expect(consoleSpy).toHaveBeenCalledWith('DRIVER: picked up', payload);
+    expect(eventEmitter.emit).toHaveBeenCalledWith('Package pickedup', payload);
     // expect(eventEmitter.emit).toHaveBeenCalledWith('Pickup: in-transit', payload);
   });
 
@@ -38,7 +37,7 @@ describe('Driver', () => {
     let payload = { orderId: 1234 };
     deliverPackage(payload);
 
-    expect(console.log).toHaveBeenCalledWith('Driver: delivered', payload.orderId);
+    expect(consoleSpy).toHaveBeenCalledWith('Driver: delivered', payload);
     expect(eventEmitter.emit).toHaveBeenCalledWith('Package delivered', payload);
   });
 

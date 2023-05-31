@@ -2,7 +2,7 @@
 
 
 const eventEmitter = require('../eventEmitter');
-const { orderPackage, orderMessage } = require('./handler');
+const { orderPackage, thankDriver } = require('./handler');
 
 
 jest.mock('../eventEmitter', () => {
@@ -29,7 +29,7 @@ describe('Vendor', (payload) => {
         let payload = { orderId: 1234 };
         orderPackage(payload);
 
-        expect(console.log).toHaveBeenCalledWith('Vendor order:', payload);
+        expect(consoleSpy).toHaveBeenCalledWith('Vendor order:', payload);
         expect(eventEmitter.emit).toHaveBeenCalledWith('Package available', payload);
     });
 
