@@ -7,14 +7,14 @@ const eventEmitter = require('../eventEmitter');
 const pickupPackage = (payload) => {
   setTimeout(() => {
     console.log('Driver: picked up', payload.orderId);
-    eventEmitter.emit('Package pickedup', payload);  
+    eventEmitter.emit('In transit', payload);  
   }, 3000);
 };
 
 
 const transitPackage = (payload) => {
   setTimeout(() => {
-    eventEmitter.emit('In transit', payload);
+    eventEmitter.emit('Package delivered', payload);
   }, 3000);
 };
 

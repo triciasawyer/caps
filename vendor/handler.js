@@ -22,7 +22,6 @@ const orderPackage = (payload = null) => {
 
 const thankDriver = (payload) => console.log('Vendor: Thank you for placing your order', payload.customer);
 
-
 const orderMessage = (payload) => {
     setTimeout(() => {
         thankDriver(payload);
