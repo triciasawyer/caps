@@ -32,7 +32,7 @@ to run tests, after running `npm i`, run the command `npm test`
 
 #### Deployed version
 
-[Render deploy](https://api-server-prod-3588.onrender.com)
+[Render deploy](https://caps-dev.onrender.com)
 
 
 #### UML
