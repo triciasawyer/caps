@@ -25,6 +25,7 @@ As a developer, I want to create network event driven system using Socket.io so 
 ### Links and Resources
 
 - [GitHub Actions ci/cd]
+[Emit cheatsheet](https://socket.io/docs/v3/emit-cheatsheet/)
 
 ### Collaborators
 
