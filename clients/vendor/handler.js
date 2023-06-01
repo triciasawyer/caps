@@ -1,11 +1,12 @@
 'use strict';
 
 
-const Chance = require('chance');
 const { io } =  require('socket.io-client');
 const socket =  io('http://localhost:3001/caps');
+const Chance = require('chance');
 
 let chance = new Chance();
+
 
 const orderPackage = (payload = null) => {
     if (!payload) {

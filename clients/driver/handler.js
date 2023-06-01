@@ -4,6 +4,8 @@
 const { io } =  require('socket.io-client');
 const socket =  io('http://localhost:3001/caps');
 
+
+
 const pickupPackage = (payload) => {
   console.log('Driver: picked up', payload.orderId);
   socket.emit('In transit', payload);

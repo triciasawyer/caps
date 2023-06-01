@@ -7,7 +7,7 @@ const socket = io('http://localhost:3001/caps');
 
 // starts the event cycle, pickup emit is inside the orderPackage
 setInterval(() => {
-    eventEmitter.emit('Package available');
+    socket.emit('Package available');
 }, 5000);
 
 
