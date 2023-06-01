@@ -21,11 +21,11 @@ As a vendor, I want to be notified when my package has been delivered.
 ### Links and Resources
 
 - [GitHub Actions ci/cd]
-- [back-end dev server url]
 
 ### Collaborators
 
 - Code review in lecture using Reece's code
+- Worked in Remo with Daniel and Stephen on code and test issues
 
 ### Setup
 
@@ -45,4 +45,4 @@ to run tests, after running `npm i`, run the command `npm test`
 
 #### UML
 
-![UML]()
+![UML](./assets/lab11-UML.png)
