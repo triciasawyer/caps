@@ -2,8 +2,8 @@
 
 
 const { orderPackage, orderMessage } = require('./handler');
-const eventEmitter = require('../../eventEmitter');
-
+const { io } = require('socket.io-client');
+const socket = io('http://localhost:3001/caps');
 
 // starts the event cycle, pickup emit is inside the orderPackage
 setInterval(() => {
@@ -11,6 +11,6 @@ setInterval(() => {
 }, 5000);
 
 
-eventEmitter.on('Package available', orderPackage);
-eventEmitter.on('delivered', orderMessage);
+socket.on('Package available', orderPackage);
+socket.on('delivered', orderMessage);
 

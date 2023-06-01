@@ -2,7 +2,8 @@
 
 
 const Chance = require('chance');
-const eventEmitter = require('../../eventEmitter');
+const { io } =  require('socket.io-client');
+const socket =  io('http://localhost:3001/caps');
 
 let chance = new Chance();
 
@@ -16,7 +17,7 @@ const orderPackage = (payload = null) => {
         };
     }
     console.log('Vendor: Order ready for pickup', payload);
-    eventEmitter.emit('pickup', payload);
+    socket.emit('pickup', payload);
 };
 
 
