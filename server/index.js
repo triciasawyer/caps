@@ -17,10 +17,10 @@ io.on('connection', (socket) => {
   console.log('Connected to server', socket.id);
 });
 
-
 caps.on('connection', (socket) => {
   console.log('Connected to caps', socket.id);
 });
+
 
 // joining a room
 socket.on('JOIN', (room) => {
