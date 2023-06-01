@@ -2,7 +2,7 @@
 
 
 const { orderPackage, orderMessage } = require('./handler');
-const eventEmitter = require('../eventEmitter');
+const eventEmitter = require('../../eventEmitter');
 
 
 // starts the event cycle, pickup emit is inside the orderPackage

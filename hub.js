@@ -4,8 +4,8 @@
 let eventEmitter = require('./eventEmitter');
 
 // awareness of vendor and driver
-require('./vendor/index');
-require('./driver/index');
+require('./clients/vendor/index');
+require('./clients/driver/index');
 
 
 // listeners
