@@ -11,7 +11,7 @@ let chance = new Chance();
 const orderPackage = (socket, payload = null) => {
     if (!payload) {
         payload = {
-            store: chance.company(),
+            store: '1-206-flowers',
             orderId: chance.guid(),
             customer: chance.name(),
             address: chance.address(),
