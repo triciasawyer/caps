@@ -1,7 +1,7 @@
 'use strict';
 
 
-const eventEmitter = require('../eventEmitter');
+const eventEmitter = require('../../eventEmitter');
 
 
 const pickupPackage = (payload) => {

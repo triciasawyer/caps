@@ -2,7 +2,7 @@
 
 
 const Chance = require('chance');
-const eventEmitter = require('../eventEmitter');
+const eventEmitter = require('../../eventEmitter');
 
 let chance = new Chance();
 

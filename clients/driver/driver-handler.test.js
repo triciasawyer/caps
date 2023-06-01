@@ -1,10 +1,10 @@
 'use strict';
 
-const eventEmitter = require('../eventEmitter');
-const { pickupPackage, deliverPackage, orderPackage } = require('./handler');
+const eventEmitter = require('../../eventEmitter');
+const { pickupPackage, deliverPackage } = require('./handler');
 
 
-jest.mock('../eventEmitter', () => {
+jest.mock('../../eventEmitter', () => {
   return {
     on: jest.fn(),
     emit: jest.fn(),
