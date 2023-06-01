@@ -1,14 +1,14 @@
 'use strict';
 
 
-const { io } =  require('socket.io-client');
-const socket =  io('http://localhost:3001/caps');
+// const { io } =  require('socket.io-client');
+// const socket =  io('http://localhost:3002/caps');
 const Chance = require('chance');
 
 let chance = new Chance();
 
 
-const orderPackage = (payload = null) => {
+const orderPackage = (socket, payload = null) => {
     if (!payload) {
         payload = {
             store: chance.company(),
@@ -22,14 +22,17 @@ const orderPackage = (payload = null) => {
 };
 
 
-const thankDriver = (payload) => console.log('Vendor: Thank you for placing your order', payload.customer);
-
-const orderMessage = (payload) => {
-    setTimeout(() => {
-        thankDriver(payload);
-    }, 1000);
-};
+const thankDriver = (payload) => {
+    console.log('Vendor: Thank you for placing your order', payload.customer);
+}
 
 
-module.exports = { orderPackage, orderMessage, thankDriver };
+// const orderMessage = (payload) => {
+//     setTimeout(() => {
+//         thankDriver(payload);
+//     }, 1000);
+// };
+
+
+module.exports = { orderPackage, thankDriver };
 

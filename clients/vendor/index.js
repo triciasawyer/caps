@@ -1,16 +1,17 @@
 'use strict';
 
 
-const { orderPackage, orderMessage } = require('./handler');
+const { orderPackage, thankDriver } = require('./handler');
 const { io } = require('socket.io-client');
-const socket = io('http://localhost:3001/caps');
+const socket = io('http://localhost:3002/caps');
+
 
 // starts the event cycle, pickup emit is inside the orderPackage
+socket.on('delivered', (payload) => {
+    thankDriver(payload);
+});
+
 setInterval(() => {
-    socket.emit('Package available');
-}, 5000);
-
-
-socket.on('Package available', orderPackage);
-socket.on('delivered', orderMessage);
+    orderPackage(socket);
+}, 3000);
 
