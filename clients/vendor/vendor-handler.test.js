@@ -28,7 +28,7 @@ afterEach(() => {
 
 describe('Vendor', () => {
     test('Successfully place an order that is available', () => {
-        let payload = { orderId: 1234, };
+        let payload = { orderId: 1234 };
         orderPackage(payload);
 
         expect(consoleSpy).toHaveBeenCalledWith('Vendor: Order ready for pickup', payload);
