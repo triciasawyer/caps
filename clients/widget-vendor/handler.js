@@ -4,7 +4,7 @@ var Chance = require('chance');
 var chance = new Chance();
 
 
-const createOrder = (socket, payload = null) => {
+const createdOrder = (socket, payload = null) => {
   if(!payload){
     payload = {
       store: 'acme-widgets',
@@ -13,7 +13,6 @@ const createOrder = (socket, payload = null) => {
       address: chance.address(),
     };
   }
-
 
 
   socket.emit('Join', payload.store);
@@ -27,4 +26,4 @@ const packageDelivered = (payload) => {
 };
   
 
-module.exports = { createOrder, packageDelivered }; 
+module.exports = { createdOrder, packageDelivered }; 

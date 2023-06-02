@@ -4,9 +4,11 @@
 require('dotenv').config();
 const { Server } = require('socket.io');
 const PORT = process.env.PORT || 3002;
+const Queue = require('./lib/queue');
 
 // socket server singleton... called io or server
 const io = new Server();
+const capsQueue = new Queue();
 
 // create namespace
 const caps = io.of('/caps');
@@ -23,16 +25,34 @@ caps.on('connection', (socket) => {
 
   // listens for and relays pickup event
   socket.on('pickup', (payload) => {
+    let driverQueue = capsQueue.read('driver');
+    if (!driverQueue) {
+      let driverKey = capsQueue.store('driver', new Queue());
+      driverQueue = capsQueue.read(driverKey);
+    }
+    // driverQueue.store();
     socket.broadcast.emit('pickup', payload);
   });
 
-  // not need
   socket.on('In transit', (payload) => {
     socket.broadcast.emit('In transit', payload);
   });
 
   socket.on('delivered', (payload) => {
     socket.broadcast.emit('delivered', payload);
+  });
+
+
+  socket.on('getAll', (payload) => {
+    console.log('attempt to get all orders');
+    let currentQueue = capsQueue.read(payload.queueId);
+    if (currentQueue && currentQueue.data){
+      // check this because I don't want to refactor my payload like in lecture
+      Object.keys(currentQueue.data).forEach(messageId => {
+        let message = currentQueue.read(messageId);
+        socket.emit(message.event, message);
+      });
+    }
   });
 
 

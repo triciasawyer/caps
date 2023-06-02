@@ -3,12 +3,13 @@
 
 const { io } = require('socket.io-client');
 const socket = io('http://localhost:300/caps');
-const { createOrder, packageDelivered } = require('./handler');
+const { createdOrder, packageDelivered } = require('./handler');
 
-socket.emit('getAll', { store: '1-800-flowers'});
+socket.emit('getAll', {store: '1-800-flowers'});
+
 
 setInterval(() => {
-  createOrder(socket);
+  createdOrder(socket);
 }, 3000);
 
 
