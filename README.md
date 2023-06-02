@@ -17,10 +17,15 @@ As a driver, I want to alert the system when a package has been delivered.
 As a vendor, I want to be notified when my package has been delivered.
 
 - Socket.IO(PR 2, lab 12)
+In Phase 2, we’ll be changing the underlying networking implementation of our CAPS system from using node events to using a library called Socket.io so that clients can communicate over a network. Socket.io manages the connection pool for us, making broadcasting much easier to operate, and works well both on the terminal (between servers) and with web clients.
+
+Developer story changes:
+As a developer, I want to create network event driven system using Socket.io so that I can write code that responds to events originating from both servers and client applications.
 
 ### Links and Resources
 
 - [GitHub Actions ci/cd]
+[Emit cheatsheet](https://socket.io/docs/v3/emit-cheatsheet/)
 
 ### Collaborators
 
@@ -46,3 +51,4 @@ to run tests, after running `npm i`, run the command `npm test`
 #### UML
 
 ![UML](./assets/lab11-UML.png)
+![UML](./assets/)
