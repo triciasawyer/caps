@@ -47,14 +47,25 @@ caps.on('connection', (socket) => {
     console.log('attempt to get all orders');
     let currentQueue = capsQueue.read(payload.queueId);
     if (currentQueue && currentQueue.data){
+      const ids = Object.keys(currentQueue.data);
       // check this because I don't want to refactor my payload like in lecture
-      Object.keys(currentQueue.data).forEach(messageId => {
-        let message = currentQueue.read(messageId);
-        socket.emit(message.event, message);
+      ids.forEach(messageId => {
+        let savedPayload = currentQueue.read(messageId);
+    
+        socket.emit(savedPayload.event, savedPayload);
       });
     }
   });
 
+
+  socket.on('received', (payload) => {
+    let currentQueue = capsQueue.read(payload.queueId);
+    if(currentQueue){
+      throw new Error('we have the payload, but no queue');
+    }
+    currentQueue.remove(payload.messageId);
+  });
+  
 
 });
 
