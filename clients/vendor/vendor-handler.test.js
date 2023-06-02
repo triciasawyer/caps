@@ -1,36 +1,38 @@
 'use strict';
 
-const eventEmitter = require('../../eventEmitter');
+
+const { io } = require('socket.io-client');
+const socket = io('http://localhost:3002/caps');
 const { orderPackage, thankDriver } = require('./handler');
 
 
-jest.mock('../../eventEmitter', () => {
+jest.mock('socket.io-client', () => {
+    const emit = jest.fn();
     return {
-        on: jest.fn(),
-        emit: jest.fn(),
+      io: jest.fn().mockReturnValue({
+        emit,
+      }),
     };
-});
+  });
 
 let consoleSpy;
 
 beforeEach(() => {
-    // Attach to the console (take it over)
     consoleSpy = jest.spyOn(console, 'log').mockImplementation();
 });
 
 afterEach(() => {
-    // Put the console back
     consoleSpy.mockRestore();
 });
 
 
-describe('Vendor', (payload) => {
+describe('Vendor', () => {
     test('Successfully place an order that is available', () => {
         let payload = { orderId: 1234, };
         orderPackage(payload);
 
         expect(consoleSpy).toHaveBeenCalledWith('Vendor: Order ready for pickup', payload);
-        expect(eventEmitter.emit).toHaveBeenCalledWith('pickup', payload);
+        expect(socket.emit).toHaveBeenCalledWith('pickup', payload);
     });
 
 

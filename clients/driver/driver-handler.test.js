@@ -1,13 +1,17 @@
 'use strict';
 
-const eventEmitter = require('../../eventEmitter');
+
+const { io } = require('socket.io-client');
+const socket = io('http://localhost:3002/caps');
 const { pickupPackage, deliverPackage } = require('./handler');
 
 
-jest.mock('../../eventEmitter', () => {
+jest.mock('socket.io-client', () => {
+  const emit = jest.fn();
   return {
-    on: jest.fn(),
-    emit: jest.fn(),
+    io: jest.fn().mockReturnValue({
+      emit,
+    }),
   };
 });
 
@@ -23,20 +27,20 @@ afterEach(() => {
 
 
 describe('Driver', () => {
-  test('Successfully log and emit in-transit after package is picked up', () => {
+  test('Successfully receives a package to deliver', () => {
     let payload = { orderId: 1234 };
     pickupPackage(payload);
 
-    expect(eventEmitter.emit).toHaveBeenCalledWith('In transit', payload);
+    expect(socket.emit).toHaveBeenCalledWith('In transit', payload);
     expect(consoleSpy).toHaveBeenCalledWith('Driver: picked up', payload.orderId);
   });
 
 
-  test('Successfully log and emit in-transit after package is delivered', () => {
+  test('Successfully delivers the package', () => {
     let payload = { orderId: 1234 };
     deliverPackage(payload);
 
-    expect(eventEmitter.emit).toHaveBeenCalledWith('delivered', payload);
+    expect(socket.emit).toHaveBeenCalledWith('delivered', payload);
     expect(consoleSpy).toHaveBeenCalledWith('Driver: delivered', payload.orderId);
   });
 
