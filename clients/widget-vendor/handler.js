@@ -8,7 +8,7 @@ const createdOrder = (socket, payload = null) => {
   if(!payload){
     payload = {
       store: 'acme-widgets',
-      orderID: chance.guid(),
+      orderId: chance.guid(),
       customer: chance.name(),
       address: chance.address(),
     };
@@ -16,7 +16,7 @@ const createdOrder = (socket, payload = null) => {
 
 
   socket.emit('Join', payload.store);
-  console.log(`Vendor: Order #:${payload.orderID} ready for pickup.`);
+  console.log(`Vendor: Order #: ${payload.orderId} ready for pickup.`);
   socket.emit('pickup', payload);
 };
   

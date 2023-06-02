@@ -1,5 +1,8 @@
 'use strict';
 
+
+const { io } = require('socket.io-client');
+const socket = io('http://localhost:3001/caps');
 const { createdOrder, packageDelivered } = require('./handler');
 
 jest.mock('../socket.js', () => {
@@ -27,29 +30,17 @@ afterAll(() => {
 
 
 describe('Widget vendor', () => {
-
-  let socket;
-  let payload;
-  beforeEach(() => {
-    socket = require('../socket.js').io.connect(); // Use the mock socket object
-    payload = {
-      store: 'tester',
-      orderID: 1234,
-      customer: 'customer',
-      address: 'address',
-    };
-  });
-
-    
   test('Successfully create an order payload', () => {
+    let payload = { orderId: 1234 };
     createdOrder(socket, payload);
 
-    expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Order #:${payload.orderID} ready for pickup.`);
+    expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Order #: ${payload.orderId} ready for pickup.`);
     expect(socket.emit).toHaveBeenCalledWith('pickup', payload);
   });
 
 
   test('Message is sent after package is delivered', () => {
+    let payload = { orderId: 1234 };
     packageDelivered(payload);
 
     expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Thank you for placing your order ${payload.customer}`);
