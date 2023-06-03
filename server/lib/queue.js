@@ -7,7 +7,7 @@ class Queue {
   }
 
   store(key, value){
-    this.date[key] = value;
+    this.data[key] = value;
     console.log('Something was added to the queue');
     return key;
   }

@@ -23,6 +23,14 @@ caps.on('connection', (socket) => {
     console.log('Event: ', { event, timestamp, payload });
   });
 
+
+  // // joining a room
+  socket.on('JOIN', (room) => {
+    console.log(socket.id, ' joined ', room);
+    socket.join(room);
+  });
+
+
   // listens for and relays pickup event
   socket.on('pickup', (payload) => {
     let driverQueue = capsQueue.read('driver');
@@ -30,15 +38,23 @@ caps.on('connection', (socket) => {
       let driverKey = capsQueue.store('driver', new Queue());
       driverQueue = capsQueue.read(driverKey);
     }
-    // driverQueue.store();
+    driverQueue.store(payload.messageId, payload);
     socket.broadcast.emit('pickup', payload);
   });
+
 
   socket.on('In transit', (payload) => {
     socket.broadcast.emit('In transit', payload);
   });
 
+
   socket.on('delivered', (payload) => {
+    let vendorQueue = capsQueue.read(payload.queueId);
+    if (!vendorQueue) {
+      let vendorKey = capsQueue.store(payload.queueId, new Queue());
+      vendorQueue = capsQueue.read(vendorKey);
+    }
+    vendorQueue.store(payload.messageId, payload);
     socket.broadcast.emit('delivered', payload);
   });
 
@@ -48,11 +64,9 @@ caps.on('connection', (socket) => {
     let currentQueue = capsQueue.read(payload.queueId);
     if (currentQueue && currentQueue.data){
       const ids = Object.keys(currentQueue.data);
-      // check this because I don't want to refactor my payload like in lecture
       ids.forEach(messageId => {
-        let savedPayload = currentQueue.read(messageId);
-    
-        socket.emit(savedPayload.event, savedPayload);
+        let payload = currentQueue.read(messageId);
+        socket.emit(payload.event, payload);
       });
     }
   });
@@ -60,21 +74,14 @@ caps.on('connection', (socket) => {
 
   socket.on('received', (payload) => {
     let currentQueue = capsQueue.read(payload.queueId);
-    if(currentQueue){
-      throw new Error('we have the payload, but no queue');
+    if(!currentQueue){
+      throw new Error('We have the payload, but no queue');
     }
     currentQueue.remove(payload.messageId);
   });
   
 
 });
-
-
-// // joining a room
-// socket.on('JOIN', (room) => {
-//   console.log(socket.id, ' joined ', room);
-//   socket.join(room);
-// });
 
 
 console.log('Listening on PORT:', PORT);
