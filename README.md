@@ -42,7 +42,7 @@ User stories:
 ### Collaborators
 
 - Code review in lecture using Reece's code
-- Worked in Remo with Daniel and Stephen on code and test issues
+- Worked in Remo with Daniel, Stephen, and Keelan on code and test issues
 
 ### Setup
 
