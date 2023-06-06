@@ -1,27 +1,27 @@
-'use strict';
+// 'use strict';
 
 
-const { io } =  require('socket.io-client');
-const socket =  io('http://localhost:3002/caps');
+// const { io } =  require('socket.io-client');
+// const socket =  io('http://localhost:3002/caps');
 
 
-const pickupPackage = (payload) => {
-  console.log('Driver: picked up', payload.orderId);
-  socket.emit('In transit', payload);
-};
+// // const pickupPackage = (payload) => {
+// //   console.log('Driver: picked up', payload.messageId);
+// //   socket.emit('In transit', payload);
+// // };
 
 
-const transitPackage = (payload) => {
-  setTimeout(() => {
-    socket.emit('Package delivered', payload);
-  }, 3000);
-};
+// // const transitPackage = (payload) => {
+// //   setTimeout(() => {
+// //     socket.emit('Package delivered', payload);
+// //   }, 3000);
+// // };
 
 
-const deliverPackage = (payload) => {
-  console.log('Driver: delivered', payload.orderId);
-  socket.emit('delivered', payload);  
-};
+// const deliverPackage = (payload) => {
+//   console.log('Driver: delivered', payload.messageId);
+//   socket.emit('delivered', payload);  
+// };
 
 
-module.exports = { pickupPackage, transitPackage, deliverPackage };
+// module.exports = { pickupPackage, transitPackage, deliverPackage };
