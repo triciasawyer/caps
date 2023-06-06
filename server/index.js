@@ -25,7 +25,7 @@ caps.on('connection', (socket) => {
 
 
   // // joining a room
-  socket.on('JOIN', (room) => {
+  socket.on('Join', (room) => {
     console.log(socket.id, ' joined ', room);
     socket.join(room);
   });
@@ -49,24 +49,28 @@ caps.on('connection', (socket) => {
 
 
   socket.on('delivered', (payload) => {
+    payload.event = 'delivered';
     let vendorQueue = capsQueue.read(payload.queueId);
     if (!vendorQueue) {
       let vendorKey = capsQueue.store(payload.queueId, new Queue());
       vendorQueue = capsQueue.read(vendorKey);
     }
     vendorQueue.store(payload.messageId, payload);
-    socket.broadcast.emit('delivered', payload);
+    // console.log('TTTTT', payload.queueId);
+    socket.to(payload.queueId).emit('delivered', payload);
   });
 
 
   socket.on('getAll', (payload) => {
     console.log('attempt to get all orders');
     let currentQueue = capsQueue.read(payload.queueId);
+    // console.log('XXXX', currentQueue);
     if (currentQueue && currentQueue.data){
       const ids = Object.keys(currentQueue.data);
       ids.forEach(messageId => {
-        let payload = currentQueue.read(messageId);
-        socket.emit(payload.event, payload);
+        let order = currentQueue.read(messageId);
+        console.log('XXXX', payload.queueId);
+        socket.emit(order.event, order);
       });
     }
   });

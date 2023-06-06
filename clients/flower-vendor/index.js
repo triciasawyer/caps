@@ -7,7 +7,7 @@ const { createdOrder, packageDelivered } = require('./handler');
 const store = '1-800-flowers';
 
 
-// socket.emit('Join', store);
+socket.emit('Join', store);
 
 socket.emit('getAll', {queueId: store});
 

@@ -7,9 +7,9 @@ const { createdOrder, packageDelivered } = require('./handler');
 const store = 'acme-widgets';
 
 
-// socket.emit('Join', store);
+socket.emit('Join', store);
 
-socket.emit('getAll', {store});
+socket.emit('getAll', {queueId: store});
 
 setInterval(() => {
   createdOrder(socket);

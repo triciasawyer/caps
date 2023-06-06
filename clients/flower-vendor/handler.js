@@ -22,7 +22,6 @@ const createdOrder = (socket, order = null) => {
     order,
   };
 
-  socket.emit('Join', payload.queueId);
   console.log(`Vendor: Order #: ${payload.messageId} ready for pickup.`);
   socket.emit('pickup', payload);
 };
