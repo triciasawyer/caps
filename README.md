@@ -46,11 +46,21 @@ User stories:
 
 ### Setup
 
-.env requirements (where applicable)
-for now I have none and do not require one
+To check out how my project works:
 
-How to initialize/run your application (where applicable)
-e.g. npm start
+- Navigate to the queue branch
+- Open a total of 4 terminal
+
+1. `cd caps` (main directory)
+2. `cd clients/driver`
+3. `cd clients/flower-vendor`
+4. `cd clients/widget-vendor`
+
+Once these are all open, run `nodemon` in each terminal.
+
+When you do so, you should get something like this...
+
+![caps process](./assets/caps-process.png)
 
 #### Tests
 
