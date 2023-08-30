@@ -46,25 +46,51 @@ User stories:
 
 ### Setup
 
-To check out how my project works:
+To see how my project works, follow these steps:
 
-- Navigate to the queue branch
-- Open a total of 4 terminal
+1. **Open four terminals**
 
-1. `cd caps` (main directory)
-2. `cd clients/driver`
-3. `cd clients/flower-vendor`
-4. `cd clients/widget-vendor`
+Open a total of four terminal windows or tabs.
 
-Once these are all open, run `nodemon` in each terminal.
+2. **Navigate to the Main directory:**
 
-When you do so, you should get something like this...
+In the first terminal, navigate to the main directory of the project:
+
+`cd caps`
+
+3. **Switch to the Correct Branch:**
+
+Ensure that you are on the queue branch of the project. If you are not already on this branch, switch to it.
+
+4. **Driver Client:**
+
+In the second terminal, navigate to the driver client directory:
+
+`cd clients/driver`
+
+5. **Flower Vendor Client:**
+
+In the third terminal, navigate to the flower vendor client directory:
+
+`cd clients/flower-vendor`
+
+6. **Widget Vendor Client:**
+
+In the fourth terminal, navigate to the widget vendor client directory:
+
+`cd clients/widget-vendor`
+
+7. **Run Nodemon:**
+
+In each of the four terminals, run the nodemon command to start the respective parts of the project. You should now have one terminal for the main directory, and one terminal each for the driver, flower vendor, and widget vendor clients, each running its own part of the project.
+
+By following these steps, you'll be able to observe the functionality of my project, and you should then see something like this:
 
 ![caps process](./assets/caps-process.png)
 
 #### Tests
 
-to run tests, after running `npm i`, run the command `npm test`
+To run tests, after running `npm i`, run the command `npm test`
 
 #### Deployed version
 
