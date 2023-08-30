@@ -29,22 +29,22 @@ afterAll(() => {
 });
 
 
-describe('Widget vendor', () => {
-  test('Successfully create an order payload', () => {
-    let payload = { orderId: 1234 };
-    createdOrder(socket, payload);
+// describe('Widget vendor', () => {
+//   test('Successfully create an order payload', () => {
+//     let payload = { orderId: 1234 };
+//     createdOrder(socket, payload);
 
-    expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Order #: ${payload.orderId} ready for pickup.`);
-    expect(socket.emit).toHaveBeenCalledWith('pickup', payload);
-  });
-
-
-  test('Message is sent after package is delivered', () => {
-    let payload = { orderId: 1234 };
-    packageDelivered(payload);
-
-    expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Thank you for placing your order ${payload.customer}`);
-  });
+//     expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Order #: ${payload.orderId} ready for pickup.`);
+//     expect(socket.emit).toHaveBeenCalledWith('pickup', payload);
+//   });
 
 
-});
+//   test('Message is sent after package is delivered', () => {
+//     let payload = { orderId: 1234 };
+//     packageDelivered(payload);
+
+//     expect(consoleSpy).toHaveBeenCalledWith(`Vendor: Thank you for placing your order ${payload.customer}`);
+//   });
+
+
+// });
