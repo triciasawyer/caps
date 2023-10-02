@@ -36,8 +36,8 @@ User stories:
 
 ### Links and Resources
 
-- [GitHub Actions ci/cd]
-[Emit cheatsheet](https://socket.io/docs/v3/emit-cheatsheet/)
+- [GitHub Actions ci/cd](https://github.com/triciasawyer/caps/actions)
+- [Emit cheatsheet](https://socket.io/docs/v3/emit-cheatsheet/)
 
 ### Collaborators
 
