@@ -24,7 +24,7 @@ caps.on('connection', (socket) => {
   });
 
 
-  // // joining a room
+  // joining a room
   socket.on('Join', (room) => {
     console.log(socket.id, ' joined ', room);
     socket.join(room);
