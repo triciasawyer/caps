@@ -1,9 +1,9 @@
 'use strict';
 
 
-const { io } = require('socket.io-client');
-const socket = io('http://localhost:3002/caps');
-const { pickupPackage, deliverPackage } = require('./handler');
+// const { io } = require('socket.io-client');
+// const socket = io('http://localhost:3002/caps');
+// const { pickupPackage, deliverPackage } = require('./handler');
 
 
 jest.mock('socket.io-client', () => {
@@ -28,7 +28,7 @@ afterEach(() => {
 
 describe('Driver', () => {
   test('Successfully receives a package to deliver', () => {
-    let payload = { orderId: 1234 };
+    // let payload = { orderId: 1234 };
     // pickupPackage(payload);
 
     // expect(socket.emit).toHaveBeenCalledWith('In transit', payload);
@@ -37,7 +37,7 @@ describe('Driver', () => {
 
 
   test('Successfully delivers the package', () => {
-    let payload = { orderId: 1234 };
+    // let payload = { orderId: 1234 };
     // deliverPackage(payload);
 
     // expect(socket.emit).toHaveBeenCalledWith('delivered', payload);
